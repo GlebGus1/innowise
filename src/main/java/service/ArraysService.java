@@ -10,7 +10,7 @@ import java.util.Comparator;
 public class ArraysService {
     private static final Logger logger = LogManager.getLogger(ArraysService.class);
 
-    public <T extends Comparable<T>> T findMin(NumberArray<T> numberArray) {
+    public <T extends Comparable<T>> T findMin(NumberArray<T> numberArray) throws InvalidArgumentException {
 
         validate(numberArray);
 
@@ -23,7 +23,7 @@ public class ArraysService {
         return min;
     }
 
-    public <T extends Comparable<T>> T findMax(NumberArray<T> numberArray) {
+    public <T extends Comparable<T>> T findMax(NumberArray<T> numberArray) throws InvalidArgumentException {
 
         validate(numberArray);
 
@@ -36,7 +36,7 @@ public class ArraysService {
         return max;
     }
 
-    public <T extends Number & Comparable<T>> Double findSum(NumberArray<T> numberArray) {
+    public <T extends Number & Comparable<T>> Double findSum(NumberArray<T> numberArray) throws InvalidArgumentException {
 
         validate(numberArray);
         Double sum = Arrays.stream(numberArray.array())
@@ -49,7 +49,7 @@ public class ArraysService {
         return  sum;
     }
 
-    public <T extends Number & Comparable<T>> Double findAverage(NumberArray<T> numberArray) {
+    public <T extends Number & Comparable<T>> Double findAverage(NumberArray<T> numberArray) throws InvalidArgumentException {
 
         validate(numberArray);
 
@@ -64,7 +64,7 @@ public class ArraysService {
 
     }
 
-    private <T extends Comparable<T>> void validate(NumberArray<T> numberArray) {
+    private <T extends Comparable<T>> void validate(NumberArray<T> numberArray) throws InvalidArgumentException {
         if (numberArray == null || numberArray.array() == null) {
             throw new InvalidArgumentException("Array is null");
         }
